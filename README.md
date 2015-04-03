@@ -10,48 +10,125 @@ Use [TSLint](https://www.npmjs.com/package/tslint) in your build process to enfo
 Types
 -----
 
-Enable noImplicitAny option the compiler. Use types instead of the any type. Use type inference freely. Add type information when the inference is not clear.
+Enable noImplicitAny option the compiler. Use types instead of the any type. Use type inference freely. Add type information when the inference is not clear. Specify function's return type if it's not clear from the implemetation.
 
-```
+```TypeScript
 // myDocument type is not obvious to the reader
 getFromDatabase.done((myDocument: DocumentType) => {
     response(myDocument);
 });
 
-// Type of streetName is clear
-streetNames.forEach(streetName => {
-    console.log(streetName);
-});
+// Type of streetAddress is clear
+var streetAddress = "221B Baker Street";
 ```
+
+Convert types with global objects instead of shorthands (``String(foo)`` over ``'' + foo``). Add types to a module instead of polluting the global namespace with every interface.
 
 Formatting
 ----------
 
-Indent with 4 spaces. Always use curly braces and add semicolons. Add a new line for each property in an object. Use [camelCase](http://en.wikipedia.org/wiki/CamelCase) for variables, PascalCase for classes and constructor functions.
+Indent with 4 spaces. Always use curly braces and add semicolons. Add a new line for each property in an object. Use the literal syntax of objects, arrays and regular expressions. Use the dot notation for property access. Remove whitespace at the end of lines (including empty lines). End the file with a newline character. Don't have consecutive empty lines.
 
-```
+```TypeScript
 var myObject = {
     foo: bar
 };
 ```
 
+Separate operators and variables with spaces. Add a space before an opening curly brace.
+
+```TypeScript
+var area = length * width;
+```
+
+Don't combine multiple var statements together. Use " for strings, ' for strings within strings.
+
+```TypeScript
+var foo = require("foo");
+var subFoo = foo.subFoo;
+var bar = require("bar");
+```
+
+Declare a variable before referencing it (e.g. declare variables in the correct order).
+
+Lines should be less than 140 characters.
+
+Naming
+------
+
+Use [domain-driven](http://en.wikipedia.org/wiki/Domain-driven_design) naming. Abbrevations should almost never be used, but also avoid overtly long names. Use [camelCase](http://en.wikipedia.org/wiki/CamelCase) for variables and properties. Use PascalCase for classes, types and constructor functions. Don't start interfaces with the letter I. Single letter names should only be used when the domain calls for it, e.g. mathematics.
 
 Comments
 --------
 
-Strike a balance between commenting too much and attempting to write "self-documenting" code. Most comments should explain why instead of what, but sometimes it's necessary to explain what with comments. Leave a space before the comment text and start with a capital letter unless the first word is a variable. Use [JSDoc](http://usejsdoc.org/) for documenting all named functions.
+Strike a balance between commenting too much and attempting to write "self-documenting" code. Most comments should explain why instead of what, but sometimes it's necessary to explain what with comments.
+
+Leave a space before the comment text and start with a capital letter unless the first word is a variable. Add comment to a line before the code.
+
+```TypeScript
+// Formula proven by Archimedes
+var area = π * r * r;
+```
+
+Use [JSDoc](http://usejsdoc.org/) for documenting all named functions.
+
+```TypeScript
+/**
+ * Returns a promise of the latest revision of the document with the specified id.
+ * @param {string} id of the document
+ * @returns {Q.Promise<DocumentType>}
+ */
+var getLatestDocument = (id: string) => {
+    // ... implementation here
+};
+```
+
+Use ``// FIXME: Handle error case`` and ``// TODO: Implement caching`` tags and set your build server to track them.
 
 Control structures
 ------------------
 
-Prefer functional style .forEach, .map, .filter etc. over for/while loops whenever possible. If for/while is required for performance reasons leave a comment stating so.
+Use functional style .forEach, .map, .filter etc. over for/while loops whenever possible. When a for/while loop is required for performance reasons leave a comment stating so. Use forEach over ``for..in`.
 
-```
+```TypeScript
 // Authorization is required since commands include all commands.
 commands.filter(authorizedCommand).forEach(executeCommand);
+```
+
+Place else in the same line as the ending curly brace, always use curly braces and add whitespace after the if keyword.
+
+```TypeScript
+if (isAuthorized) {
+    response();
+} else {
+    // Not authorized..
+}
 ```
 
 Functions
 ---------
 
-Use the far-arrow syntax over the function keyword.
+Use the far-arrow syntax over the function keyword. Leave out the ()-braces if there is only one function parameter with an inferred type. Don't use curly braces if the function is simple and immediately returns a value.
+
+```TypeScript
+var squaredValues = values.map(value => value * value);
+
+var printValues = (values: number[]) => {
+    console.log(JSON.stringify(values));
+};
+```
+
+Use ``that`` when referring to another ``this``. Note that this is often not necessary when the fat-arrow syntax is not used.
+
+Comparison
+----------
+
+Always use the strict equality comparision ``===`` and ``!==`` over ``==`` and ``!=``. Use implicit boolean type coercion only for checking truthiness.
+
+Further reading, inspiration and sources
+----------------------------------------
+
+1. https://github.com/airbnb/javascript/blob/master/README.md
+2. http://www.jslint.com/
+3. https://github.com/Platypi/style_typescript
+4. https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines

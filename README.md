@@ -1,11 +1,11 @@
 # TypeScript style guide
 
-This guide tries to optimize for readability and maintainability over performance. It includes style conventions and some TypeScript best practices.
+This guide optimizes for readability and maintainability over performance. It includes style conventions and some TypeScript best practices.
 
 General
 -------
 
-Use [TSLint](https://www.npmjs.com/package/tslint) in your build process to enforce the style.
+Use [TSLint](https://www.npmjs.com/package/tslint) in your build process to enforce the style. Write ES6 with strict mode and compile to your target using e.g. [babel](https://github.com/babel/babel).
 
 Types
 -----
@@ -24,6 +24,8 @@ var streetAddress = "221B Baker Street";
 
 Convert types with global objects instead of shorthands (``String(foo)`` over ``'' + foo``). Add types to a module instead of polluting the global namespace with every interface.
 
+Use ``number[]`` over ``Array<number>``.
+
 Formatting
 ----------
 
@@ -35,13 +37,13 @@ var myObject = {
 };
 ```
 
-Separate operators and variables with spaces. Add a space before an opening curly brace.
+Separate operators and variables with spaces unless it's an unary operator. Add a space before an opening curly brace.
 
 ```TypeScript
 var area = length * width;
 ```
 
-Don't combine multiple var statements together. Use " for strings, ' for strings within strings.
+Don't combine multiple var statements together. Use ``"`` for strings, ``'` for strings within strings.
 
 ```TypeScript
 var foo = require("foo");
@@ -51,12 +53,21 @@ var bar = require("bar");
 
 Declare a variable before referencing it (e.g. declare variables in the correct order).
 
-Lines should be less than 140 characters.
+Don't use leading or trailing commas.
+
+Add a space after the colon ``:` character, but not before it.
+```TypeScript
+var myVariable: string;
+```
+
+Lines should be at most 140 characters long.
 
 Naming
 ------
 
-Use [domain-driven](http://en.wikipedia.org/wiki/Domain-driven_design) naming. Abbrevations should almost never be used, but also avoid overtly long names. Use [camelCase](http://en.wikipedia.org/wiki/CamelCase) for variables and properties. Use PascalCase for classes, types and constructor functions. Don't start interfaces with the letter I. Single letter names should only be used when the domain calls for it, e.g. mathematics.
+Use [domain-driven](http://en.wikipedia.org/wiki/Domain-driven_design) naming. Abbrevations should almost never be used, but also avoid overtly long names. Use [camelCase](http://en.wikipedia.org/wiki/CamelCase) for variables and properties. Use PascalCase for classes, types and constructor functions. Don't start interfaces with the letter I.
+
+Single letter names should only be used when the domain calls for it, e.g. mathematics. Names may include special characters (e.g. ε) if the domain calls for it.
 
 Comments
 --------
@@ -83,17 +94,24 @@ var getLatestDocument = (id: string) => {
 };
 ```
 
-Use ``// FIXME: Handle error case`` and ``// TODO: Implement caching`` tags and set your build server to track them.
+Use ``// FIXME: `` and ``// TODO: `` tags and set your build server to track them.
+
+```
+// FIXME: Handle error case
+// TODO: Implement caching
+```
 
 Control structures
 ------------------
 
-Use functional style .forEach, .map, .filter etc. over for/while loops whenever possible. When a for/while loop is required for performance reasons leave a comment stating so. Use forEach over ``for..in`.
+Use functional style .forEach, .map, .filter etc. over for/while loops whenever possible. When a for/while loop is required for performance reasons leave a comment stating so.
 
 ```TypeScript
 // Authorization is required since commands include all commands.
 commands.filter(authorizedCommand).forEach(executeCommand);
 ```
+
+Use forEach and Object.prototype.keys over ``for..in`.
 
 Place else in the same line as the ending curly brace, always use curly braces and add whitespace after the if keyword.
 
@@ -108,7 +126,7 @@ if (isAuthorized) {
 Functions
 ---------
 
-Use the far-arrow syntax over the function keyword. Leave out the ()-braces if there is only one function parameter with an inferred type. Don't use curly braces if the function is simple and immediately returns a value.
+Use the far-arrow syntax over the function keyword. Leave out the ()-braces if there is only one function parameter with an inferred type. Don't use curly braces if the function is simple and immediately returns a value. Add a space before and after ``=>``.
 
 ```TypeScript
 var squaredValues = values.map(value => value * value);

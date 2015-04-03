@@ -43,7 +43,7 @@ Separate operators and variables with spaces unless it's an unary operator. Add 
 var area = length * width;
 ```
 
-Don't combine multiple var statements together. Use ``"`` for strings, ``'` for strings within strings.
+Don't combine multiple var statements together. Use ``"`` for strings, ``'`` for strings within strings.
 
 ```TypeScript
 var foo = require("foo");
@@ -55,7 +55,7 @@ Declare a variable before referencing it (e.g. declare variables in the correct 
 
 Don't use leading or trailing commas.
 
-Add a space after the colon ``:` character, but not before it.
+Add a space after the colon ``:`` character, but not before it.
 ```TypeScript
 var myVariable: string;
 ```
@@ -96,7 +96,7 @@ var getLatestDocument = (id: string) => {
 
 Use ``// FIXME: `` and ``// TODO: `` tags and set your build server to track them.
 
-```
+```TypeScript
 // FIXME: Handle error case
 // TODO: Implement caching
 ```
@@ -111,7 +111,7 @@ Use functional style .forEach, .map, .filter etc. over for/while loops whenever 
 commands.filter(authorizedCommand).forEach(executeCommand);
 ```
 
-Use forEach and Object.prototype.keys over ``for..in`.
+Use forEach and Object.prototype.keys over ``for..in``.
 
 Place else in the same line as the ending curly brace, always use curly braces and add whitespace after the if keyword.
 

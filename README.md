@@ -126,7 +126,7 @@ if (isAuthorized) {
 Functions
 ---------
 
-Use the far-arrow syntax over the function keyword. Leave out the ()-braces if there is only one function parameter with an inferred type. Don't use curly braces if the function is simple and immediately returns a value. Add a space before and after ``=>``.
+Use the fat arrow notation ``=>`` over the function keyword. Leave out the ()-braces if there is only one function parameter with an inferred type. Don't use curly braces if the function is simple and immediately returns a value. Add a space before and after ``=>``.
 
 ```TypeScript
 var squaredValues = values.map(value => value * value);

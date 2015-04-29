@@ -26,6 +26,8 @@ Convert types with global objects instead of shorthands (``String(foo)`` over ``
 
 Use ``number[]`` over ``Array<number>``.
 
+Use ``let`` over ``var`` to have better scoping. Use ``const`` for variables which are not re-assigned.
+
 Formatting
 ----------
 

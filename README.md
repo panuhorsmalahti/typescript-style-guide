@@ -19,7 +19,7 @@ getFromDatabase.done((myDocument: DocumentType) => {
 });
 
 // Type of streetAddress is clear
-var streetAddress = "221B Baker Street";
+const streetAddress = "221B Baker Street";
 ```
 
 Convert types with global objects instead of shorthands (``String(foo)`` over ``'' + foo``). Add types to a module instead of polluting the global namespace with every interface.
@@ -34,7 +34,7 @@ Formatting
 Indent with 4 spaces. Always use curly braces and add semicolons. Add a new line for each property in an object. Use the literal syntax of objects, arrays and regular expressions. Use the dot notation for property access. Remove whitespace at the end of lines (including empty lines). End the file with a newline character. Don't have consecutive empty lines.
 
 ```TypeScript
-var myObject = {
+let myObject = {
     foo: bar
 };
 ```
@@ -42,15 +42,15 @@ var myObject = {
 Separate operators and variables with spaces unless it's an unary operator. Add a space before an opening curly brace.
 
 ```TypeScript
-var area = length * width;
+let area = length * width;
 ```
 
-Don't combine multiple var statements together. Use ``"`` for strings, ``'`` for strings within strings.
+Don't combine multiple var, let or const statements together. Use ``"`` for strings, ``'`` for strings within strings.
 
 ```TypeScript
-var foo = require("foo");
-var subFoo = foo.subFoo;
-var bar = require("bar");
+const foo = require("foo");
+const subFoo = foo.subFoo;
+const bar = require("bar");
 ```
 
 Declare a variable before referencing it (e.g. declare variables in the correct order).
@@ -58,8 +58,9 @@ Declare a variable before referencing it (e.g. declare variables in the correct 
 Don't use leading or trailing commas.
 
 Add a space after the colon ``:`` character, but not before it.
+
 ```TypeScript
-var myVariable: string;
+let myVariable: string;
 ```
 
 Lines should be at most 140 characters long.
@@ -80,7 +81,7 @@ Leave a space before the comment text and start with a capital letter unless the
 
 ```TypeScript
 // Formula proven by Archimedes
-var area = π * r * r;
+const area = π * r * r;
 ```
 
 Use [JSDoc](http://usejsdoc.org/) for documenting all named functions.
@@ -91,7 +92,7 @@ Use [JSDoc](http://usejsdoc.org/) for documenting all named functions.
  * @param {string} id of the document
  * @returns {Q.Promise<DocumentType>}
  */
-var getLatestDocument = (id: string) => {
+const getLatestDocument = (id: string) => {
     // ... implementation here
 };
 ```
@@ -131,9 +132,9 @@ Functions
 Use the fat arrow notation ``=>`` over the function keyword. Leave out the ()-braces if there is only one function parameter with an inferred type. Don't use curly braces if the function is simple and immediately returns a value. Add a space before and after ``=>``.
 
 ```TypeScript
-var squaredValues = values.map(value => value * value);
+const squaredValues = values.map(value => value * value);
 
-var printValues = (values: number[]) => {
+const printValues = (values: number[]) => {
     console.log(JSON.stringify(values));
 };
 ```

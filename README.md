@@ -48,9 +48,8 @@ let area = length * width;
 Don't combine multiple var, let or const statements together. Use ``"`` for strings, ``'`` for strings within strings.
 
 ```TypeScript
-const foo = require("foo");
+import foo from "foo";
 const subFoo = foo.subFoo;
-const bar = require("bar");
 ```
 
 Declare a variable before referencing it (e.g. declare variables in the correct order).
